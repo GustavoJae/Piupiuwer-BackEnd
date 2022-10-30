@@ -24,6 +24,7 @@ piuRouter.post('/', (request, response) => {
     if(text.length >= 140){
         return response.status(400).json({ message: "You cannot create a piu with more than 140 characters" })
     };
+
     const user = users.find(user => user.id === userId);
     if (!user) return response.status(404).json({ message: "User with the Id informed does not exist"})
 
@@ -84,6 +85,8 @@ piuRouter.delete('/:id', (request, response) => {
     } else{ //se nao achar, devolve um aviso (seu burro!)
         return response.status(400).json({ message: "Piu with the informed Id does not exist" });
     };
+
+    return response.status(200).json({ message: "Your delete was sucessful!" });
 });
 
 export default piuRouter;

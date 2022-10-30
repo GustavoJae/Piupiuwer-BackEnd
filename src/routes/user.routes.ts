@@ -115,6 +115,8 @@ userRouter.put('/:id', (request, response) => {
     users[userIndex].telephone = telephone;
     users[userIndex].email = email;
     users[userIndex].updateDate = new Date();
+
+    return response.json(users[userIndex]);
 });
 
 userRouter.delete('/:id', (request, response) => {
@@ -126,6 +128,7 @@ userRouter.delete('/:id', (request, response) => {
     } else{
         return response.status(400).json({ message: "User with the informed Id not found" })
     };
+    return response.status(200).json({ message: "Your delete was sucessful!" });
 });
 
 export default userRouter;
