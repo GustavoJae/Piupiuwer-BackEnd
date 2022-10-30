@@ -75,6 +75,17 @@ piuRouter.put('/:id', (request, response) => {
     pius[piuIndex].updateDate = new Date();
 })
 
+piuRouter.delete('/:id', (request, response) => {
+    const { id } = request.params;
+    const piuIndex = pius.findIndex(piu => piu.id === id); //me da o indexzinho que tem um piu com o mesmo id q o id informado
+
+    if (piuIndex !== -1){ // se esse piu existir, entao apagamos (splice) esse piu
+        pius.splice(piuIndex,1);
+    } else{ //se nao achar, devolve um aviso (seu burro!)
+        return response.status(400).json({ message: "Piu with the informed Id does not exist" });
+    };
+});
+
 export default piuRouter;
 
 
